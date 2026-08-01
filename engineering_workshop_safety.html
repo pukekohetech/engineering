@@ -433,16 +433,7 @@ function displayUnsafe(req){
  if(/^Two students [A-Za-z-]+ing\b/.test(unsafe))unsafe=unsafe.replace(/^Two students ([A-Za-z-]+ing)\b/,'Two students are $1');
  return unsafe;
 }
-function unsafeAction(req,name){
- const unsafe=displayUnsafe(req);
- if(/^Two students\b/.test(unsafe)){
-  if(/^Two students [A-Za-z-]+ing\b/.test(unsafe))return `${unsafe.replace(/^Two students ([A-Za-z-]+ing)\b/,'Two students are $1')}.`;
-  return `${unsafe}.`;
- }
- if(/^(One student|A helper|A classmate|Another student|The operator|The student)\b/.test(unsafe))return `${unsafe}.`;
- if(/^(Repeatedly |Spot welding\b)/.test(unsafe)||/^[A-Z][A-Za-z-]+ing\b/.test(unsafe))return `${name} is ${lowerFirst(unsafe)}.`;
- return `${name} plans to ${lowerFirst(unsafe)}.`;
-}
+
 function targetDetails(section){
  const target=targetLabel(section);
  if(section.id==='induction')return{thing:'the engineering workshop',area:'engineering workshop',activity:'practical workshop work',plural:false,question:'in the engineering workshop'};
@@ -453,39 +444,49 @@ function targetDetails(section){
 function capFirst(s){return !s?s:String(s).charAt(0).toUpperCase()+String(s).slice(1)}
 function scenarioFor(section,req,variant=0){
  const d=targetDetails(section);
- const names=['Ari','Mia','Noah','Leilani','Sione','Ella','Jayden','Anahera'];
- const name=names[Math.floor(seeded(req.id+'name'+variant)()*names.length)];
- const isAre=d.plural?'are':'is',hasHave=d.plural?'have':'has';
- const permissionLead=section.id==='induction'?'The teacher has not given permission to begin practical work.':section.id==='hand'?'The teacher has not given permission to begin the hand-tool task.':`The teacher has not given permission to use ${d.thing}.`;
- const othersLead=section.id==='induction'?'Other students are close to an active work area in the workshop.':`Other students are close to the ${d.area}.`;
+ const hasHave=d.plural?'have':'has';
+ const permissionLead=section.id==='induction'?'The class is preparing to begin practical work.':section.id==='hand'?'The class is preparing for a hand-tool task.':`The class is preparing to use ${d.thing}.`;
+ const othersLead=section.id==='induction'?'People are close to an active work area in the workshop.':`People are close to the ${d.area}.`;
  const leads={
   permission:permissionLead,
   ppe:`The class is getting ready to work in the ${d.area}.`,
-  hazards:`Students are working in the ${d.area}.`,
+  hazards:`Work is under way in the ${d.area}.`,
   checks:`A pre-use check is taking place in the ${d.area}.`,
   guards:`A guard or safety device is being checked in the ${d.area}.`,
   setup:`A job is being set up in the ${d.area}.`,
   operation:`Work is under way in the ${d.area}.`,
   stopping:`${capFirst(d.thing)} ${hasHave} not fully stopped.`,
   others:othersLead,
-  materials:`A piece of metal has just been worked in the ${d.area}.`,
+  materials:`Material has just been worked in the ${d.area}.`,
   housekeeping:`The class is changing groups in the ${d.area}.`,
   faults:`A fault or emergency has occurred in the ${d.area}.`,
   shutdown:`The lesson is ending.`,
-  quality:`A student is trying to finish the job quickly in the ${d.area}.`
+  quality:`The group is trying to finish the job quickly in the ${d.area}.`
  };
- return `${leads[req.domain]||`A supervised task is taking place in the ${d.area}.`} ${unsafeAction(req,name)}`;
+ const proposed=lowerFirst(cleanSentence(displayUnsafe(req)));
+ return `${leads[req.domain]||`A supervised task is taking place in the ${d.area}.`} Proposed action: ${proposed}.`;
 }
-const WRONG_ACTIONS=[
- 'Continue if the student works slowly.',
- 'Finish the job and report the problem afterwards.',
- 'Ask a classmate to decide whether it is safe.',
- 'Ignore it because no one has been hurt.',
- 'Use extra PPE and continue without fixing the problem.',
- 'Carry on because the task will only take a few seconds.'
+const WRONG_RULES=[
+ 'The task may continue if the action is completed slowly, carefully and with another student watching.',
+ 'The concern may be reported after the current step has been finished, provided no one has been hurt.',
+ 'Another student may approve the action if they have used the equipment before and extra PPE is worn.',
+ 'Extra PPE may be used instead of correcting the unsafe condition when the task is nearly finished.',
+ 'The task may continue while the operator watches closely for any sign that the situation is getting worse.',
+ 'The proposed action may continue if the operator works carefully and agrees to report any problem afterwards.'
 ];
-function wrongActions(req,suffix,count=3){
- return shuffle(WRONG_ACTIONS,seeded(`${req.id}-${suffix}`)).slice(0,count);
+const WRONG_DECISIONS=[
+ 'Yes. Continue slowly and watch for a problem.',
+ 'Yes. Finish the current step, then report the concern.',
+ 'Yes. Continue if another student agrees that it is safe.',
+ 'No. Pause only long enough to add extra PPE, then continue.'
+];
+function punctuate(s){const t=cleanSentence(s);return t?`${t}.`:''}
+function labelled(label,text){return `${label}: ${punctuate(text)}`}
+function wordCount(s){return cleanSentence(s).split(/\s+/).filter(Boolean).length}
+function wrongRuleOptions(req,suffix,count=3){
+ const target=wordCount(req.rule),rng=seeded(`${req.id}-${suffix}-rules`);
+ const ranked=shuffle([...WRONG_RULES],rng).sort((a,b)=>Math.abs(wordCount(a)-target)-Math.abs(wordCount(b)-target));
+ return ranked.slice(0,count).map(x=>labelled('Safety rule',x));
 }
 function makeQuestions(section){
  const out=[],target=targetLabel(section),details=targetDetails(section);
@@ -493,27 +494,42 @@ function makeQuestions(section){
   const base={section:section.id,machine:section.title,domain:req.domain,difficulty:'foundation-to-standard',critical:req.critical,sourceTitle:SOURCES[req.source]?.title||'Source not listed',sourceRef:SOURCES[req.source]?.ref||'',sourceRequirement:req.rule,keywords:[section.short,DOMAINS[req.domain]],paper:true,requirementId:req.id};
   const add=(suffix,type,text,easy,options,correct,explanation,misconception)=>out.push({...base,id:`${req.id}-${suffix}`,type,text,easy,options,correct,explanation,misconception,fingerprint:[section.id,req.id,suffix,text,Array.isArray(correct)?correct.join('|'):correct].join('::')});
   const scene=scenarioFor(section,req,0);
-  const ruleOptions=shuffle([req.rule,...wrongActions(req,'rule')],seeded(req.id+'rule-options'));
-  add('rule','single',`${scene} What safety rule is important here?`,`What safety rule should be followed?`,ruleOptions,req.rule,req.reason,'The unsafe choices rely on speed, luck or another student instead of the required safety control.');
+  const correctRule=labelled('Safety rule',req.rule);
+  const ruleOptions=shuffle([correctRule,...wrongRuleOptions(req,'rule')],seeded(req.id+'rule-options'));
+  add('rule','single',`${scene} What safety rule applies?`,`What safety rule applies?`,ruleOptions,correctRule,req.reason,'The incorrect rules rely on speed, luck, extra PPE or another student instead of the required control.');
+
   const unsafeDisplay=displayUnsafe(req);
-  add('unsafe','single',`Which action is unsafe ${details.question}?`,`Which action is unsafe?`,shuffle([unsafeDisplay,req.rule,'Stop and ask the teacher when unsure.','Keep other people clear of the work area.'],seeded(req.id+'unsafe-options')),unsafeDisplay,`${unsafeDisplay} is unsafe. ${req.reason}`,'The other choices are safe controls or place the decision with the teacher.');
-  const stopAnswer=`No. Stop and follow this rule: ${req.rule}`;
-  add('decision','single',`${scenarioFor(section,req,1)} Should the task continue?`,`Should the task continue?`,shuffle([stopAnswer,...wrongActions(req,'decision')],seeded(req.id+'decision-options')),stopAnswer,req.reason,'Working slowly, being nearly finished or having a classmate watch does not remove the hazard.');
+  const unsafeOption=labelled('Action','Carry out the proposed action exactly as described');
+  const safeRuleOption=labelled('Action','Stop the proposed action and apply the required safety control');
+  const askOption=labelled('Action','Pause the task and ask the teacher before continuing');
+  const clearOption=labelled('Action','Keep other people clear until the situation has been checked');
+  add('unsafe','single',`${scenarioFor(section,req,1)} Which action should not happen?`,`Which action is unsafe?`,shuffle([unsafeOption,safeRuleOption,askOption,clearOption],seeded(req.id+'unsafe-options')),unsafeOption,`${unsafeDisplay} is unsafe. ${req.reason}`,'The other options stop the unsafe action, protect others or place the decision with the teacher.');
+
+  const stopAnswer='No. Stop and ask the teacher to check the situation.';
+  const decisionOptions=shuffle([stopAnswer,...shuffle(WRONG_DECISIONS,seeded(req.id+'decision-wrongs')).slice(0,3)],seeded(req.id+'decision-options'));
+  add('decision','single',`${scenarioFor(section,req,2)} Should the task continue?`,`Should the task continue?`,decisionOptions,stopAnswer,`${req.reason} The task must not continue until the required control is in place.`,'Working slowly, being nearly finished or adding PPE does not remove the hazard.');
+
   const reasonOptions=shuffle([req.reason,...shuffle(REASON_DISTRACTORS,seeded(req.id+'reason-distractors')).slice(0,3)],seeded(req.id+'reason-options'));
   add('why','single',`Safety rule: “${req.rule}” Why is this rule important?`,`Why is this safety rule important?`,reasonOptions,req.reason,req.reason,'The other choices wrongly suggest that speed, PPE or experience can replace the required control.');
-  const askTeacher='Pause the task and ask the teacher before continuing.';
-  add('multi','multi',`${scenarioFor(section,req,2)} Choose TWO things that should happen next.`,`Choose the two safest next steps.`,shuffle([req.rule,askTeacher,unsafeDisplay,wrongActions(req,'multi',1)[0]],seeded(req.id+'multi-options')),[req.rule,askTeacher],`${req.reason} Pausing and asking the teacher prevents guessing.`,'Continuing or repeating the unsafe action does not control the hazard.');
+
+  const controlStep=labelled('Next step','Stop the proposed action and apply the teacher-approved safety control');
+  const teacherStep=labelled('Next step','Pause the task and ask the teacher before continuing');
+  const unsafeStep=labelled('Next step','Carry out the proposed action slowly and carefully');
+  const finishStep=labelled('Next step','Finish the current step before reporting the concern');
+  add('multi','multi',`${scenarioFor(section,req,3)} Choose TWO things that should happen next.`,`Choose the two safest next steps.`,shuffle([controlStep,teacherStep,unsafeStep,finishStep],seeded(req.id+'multi-options')),[controlStep,teacherStep],`${req.reason} Pausing and asking the teacher prevents guessing.`,'Continuing or delaying the report does not control the hazard.');
  }
  return out;
 }
 const BANK=Object.fromEntries(SECTIONS.map(s=>[s.id,makeQuestions(s)]));
 
+
 function integratedBank(){
  const out=[];
  for(const s of SECTIONS){
   for(const req of s.requirements.filter(r=>r.critical).slice(0,8)){
-   const options=shuffle([req.rule,...wrongActions(req,'integrated')],seeded('int'+req.id));
-   out.push({id:`int-${req.id}`,section:'integrated',machine:s.title,domain:req.domain,difficulty:'integrated scenario',type:'single',critical:true,sourceTitle:SOURCES[req.source]?.title||'',sourceRef:SOURCES[req.source]?.ref||'',sourceRequirement:req.rule,requirementId:req.id,text:`${scenarioFor(s,req,4)} What safety rule is important here?`,easy:'What safety rule should be followed?',options,correct:req.rule,explanation:req.reason,misconception:'Speed, peer approval and luck do not replace the required safety control.',keywords:[s.short,DOMAINS[req.domain]],fingerprint:`integrated::${req.id}::rule`,paper:true});
+   const correct=labelled('Safety rule',req.rule);
+   const options=shuffle([correct,...wrongRuleOptions(req,'integrated')],seeded('int'+req.id));
+   out.push({id:`int-${req.id}`,section:'integrated',machine:s.title,domain:req.domain,difficulty:'integrated scenario',type:'single',critical:true,sourceTitle:SOURCES[req.source]?.title||'',sourceRef:SOURCES[req.source]?.ref||'',sourceRequirement:req.rule,requirementId:req.id,text:`${scenarioFor(s,req,4)} What safety rule applies?`,easy:'What safety rule applies?',options,correct,explanation:req.reason,misconception:'Speed, peer approval and extra PPE do not replace the required safety control.',keywords:[s.short,DOMAINS[req.domain]],fingerprint:`integrated::${req.id}::rule`,paper:true});
   }
  }
  return out;
@@ -529,8 +545,9 @@ function generateApprovedScenarios(sectionId,needed,seenIds,usedFp,rng,wantedDom
  while(out.length<needed&&guard<baseReqs.length*12){
   const req=baseReqs[guard%baseReqs.length],origin=req.origin,id=`dyn-${sectionId}-${req.id}-${guard}`,fingerprint=`${sectionId}::${req.id}::${guard}::rule`;
   if(!seenIds.has(id)&&!usedFp.has(fingerprint)){
-   const options=shuffle([req.rule,...wrongActions(req,`dynamic-${guard}`)],seeded(id+'options'));
-   out.push({id,section:sectionId,machine:origin.title,domain:req.domain,difficulty:'fresh approved scenario',type:'single',critical:req.critical,sourceTitle:SOURCES[req.source]?.title||'',sourceRef:SOURCES[req.source]?.ref||'',sourceRequirement:req.rule,requirementId:req.id,text:`${scenarioFor(origin,req,guard)} What safety rule is important here?`,easy:'What safety rule should be followed?',options,correct:req.rule,explanation:req.reason,misconception:'The required safety rule must be followed before the task continues.',keywords:[origin.short,DOMAINS[req.domain]],fingerprint,paper:true});
+   const correct=labelled('Safety rule',req.rule);
+   const options=shuffle([correct,...wrongRuleOptions(req,`dynamic-${guard}`)],seeded(id+'options'));
+   out.push({id,section:sectionId,machine:origin.title,domain:req.domain,difficulty:'fresh approved scenario',type:'single',critical:req.critical,sourceTitle:SOURCES[req.source]?.title||'',sourceRef:SOURCES[req.source]?.ref||'',sourceRequirement:req.rule,requirementId:req.id,text:`${scenarioFor(origin,req,guard)} What safety rule applies?`,easy:'What safety rule applies?',options,correct,explanation:req.reason,misconception:'The required safety rule must be followed before the task continues.',keywords:[origin.short,DOMAINS[req.domain]],fingerprint,paper:true});
   }
   guard++;
  }
