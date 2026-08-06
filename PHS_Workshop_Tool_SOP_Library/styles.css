@@ -1,0 +1,278 @@
+/* PHS Workshop Tool SOP Library v3.2 multi-file build */
+:root{--navy:#09233d;--navy2:#123f66;--orange:#e66b19;--orange2:#ff8a33;--paper:#f4f6f8;--card:#fff;--ink:#16212c;--muted:#5c6975;--line:#d5dde5;--ok:#1f7a4d;--warn:#9a5900;--danger:#a82b2b;--focus:#00a6d6;--base:16px}
+*{box-sizing:border-box}html{font-size:var(--base);scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5}button,input,select,textarea{font:inherit}button,a,.clickable{touch-action:manipulation}.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:1rem;top:1rem;z-index:9999;background:#fff;padding:.7rem;border:3px solid var(--focus)}:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.topbar{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;box-shadow:0 2px 12px #0004}.brandrow{max-width:1500px;margin:auto;padding:.7rem 1rem;display:flex;align-items:center;gap:1rem}.brand{font-weight:800;font-size:1.08rem;letter-spacing:.02em;white-space:nowrap}.brand small{display:block;font-weight:400;color:#d6e4ef;font-size:.72rem}.nav{display:flex;gap:.35rem;flex-wrap:wrap;margin-left:auto}.nav button{border:0;background:transparent;color:#fff;padding:.55rem .7rem;border-radius:.45rem;font-weight:700;cursor:pointer}.nav button:hover,.nav button.active{background:#ffffff20}.nav button.primary{background:var(--orange)}.nav button.primary:hover{background:var(--orange2)}.mobile-toggle{display:none;margin-left:auto;background:#ffffff18;color:#fff;border:1px solid #ffffff44;border-radius:.45rem;padding:.5rem .7rem}.utility{display:flex;gap:.35rem}.utility button{border:1px solid #ffffff55;color:#fff;background:transparent;border-radius:.4rem;padding:.45rem .55rem}.shell{max-width:1500px;margin:0 auto;padding:1rem}.hero{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;border-radius:1rem;padding:clamp(1.4rem,4vw,3rem);display:grid;grid-template-columns:1.6fr 1fr;gap:1.5rem;align-items:center;overflow:hidden}.hero h1{font-size:clamp(2rem,5vw,4rem);line-height:1.02;margin:0 0 .8rem}.hero p{font-size:1.08rem;max-width:800px}.hero-actions,.row-actions{display:flex;gap:.65rem;flex-wrap:wrap}.btn{border:0;border-radius:.55rem;padding:.7rem 1rem;font-weight:800;cursor:pointer;background:var(--navy2);color:#fff}.btn.orange{background:var(--orange)}.btn.light{background:#fff;color:var(--navy)}.btn.ghost{background:transparent;color:var(--navy);border:1px solid var(--navy)}.btn.danger{background:var(--danger)}.btn.small{padding:.45rem .65rem;font-size:.9rem}.hero-panel{background:#ffffff12;border:1px solid #ffffff2c;border-radius:.8rem;padding:1rem}.notice{border-left:6px solid var(--orange);background:#fff7ef;padding:1rem;border-radius:.4rem;margin:1rem 0}.notice.danger{border-color:var(--danger);background:#fff1f1}.notice.ok{border-color:var(--ok);background:#effaf4}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1rem 0}.stat{background:#fff;padding:1rem;border-radius:.7rem;border:1px solid var(--line)}.stat b{font-size:1.6rem;color:var(--navy);display:block}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin:1.6rem 0 .8rem}.section-head h2{margin:0;color:var(--navy);font-size:1.8rem}.section-head p{margin:.25rem 0 0;color:var(--muted)}.filters{display:grid;grid-template-columns:minmax(220px,2fr) repeat(3,minmax(150px,1fr));gap:.75rem;background:#fff;padding:1rem;border:1px solid var(--line);border-radius:.7rem;position:sticky;top:76px;z-index:20}.field label{font-weight:700;display:block;margin-bottom:.25rem}.field input,.field select,.field textarea{width:100%;padding:.65rem;border:1px solid #aeb8c2;border-radius:.4rem;background:#fff;color:#111}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1rem;margin-top:1rem}.tool-card{background:#fff;border:1px solid var(--line);border-radius:.75rem;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 10px #00213d0b}.tool-card.disabled{opacity:.55}.tool-image{height:215px;background:#eef1f4;display:flex;align-items:center;justify-content:center;position:relative}.tool-image img{width:100%;height:100%;object-fit:contain}.source-chip{position:absolute;right:.5rem;bottom:.5rem;background:#000b;color:#fff;padding:.2rem .4rem;border-radius:.3rem;font-size:.7rem}.card-body{padding:1rem;display:flex;flex-direction:column;gap:.65rem;flex:1}.card-body h3{margin:0;color:var(--navy);font-size:1.25rem}.badges{display:flex;flex-wrap:wrap;gap:.35rem}.badge{display:inline-block;padding:.25rem .45rem;border-radius:999px;font-size:.78rem;font-weight:800;background:#e8eef4;color:var(--navy);max-width:100%;white-space:normal}.badge.high,.badge.very-high{background:#ffe7e7;color:#8d1f1f}.badge.moderate{background:#fff1d8;color:#825000}.badge.low{background:#e4f6eb;color:#16643d}.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:auto}.empty{background:#fff;padding:2rem;text-align:center;border:1px dashed #8f9aa5;border-radius:.7rem}.sop{background:#fff;border:1px solid var(--line);border-radius:.8rem;overflow:hidden}.sop-head{background:linear-gradient(110deg,var(--navy),var(--navy2));color:#fff;padding:1.2rem;display:grid;grid-template-columns:320px 1fr;gap:1.2rem}.sop-media{display:grid;grid-template-columns:1fr 132px;gap:.8rem;align-items:start}.sop-head img{width:100%;height:230px;object-fit:contain;background:#fff;border-radius:.5rem}.sop-ppe-side{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:.6rem;padding:.55rem}.sop-ppe-side h3{margin:.1rem 0 .35rem;font-size:1rem;color:#fff}.sop-ppe-side .ppe-signs{margin:.1rem 0 0;gap:.35rem;justify-content:flex-start}.sop-ppe-side .ppe-sign{width:58px;font-size:.6rem;color:#fff}.sop-ppe-side .ppe-sign img{width:36px;height:36px}.sop-ppe-side .ppe-sign .condition{display:none}.sop-ppe-side .ppe-visual-note,.sop-ppe-side .ppe-no-gloves{display:none}.sop-head h1{margin:.2rem 0;font-size:2.2rem}.sop-toolbar{display:flex;gap:.5rem;flex-wrap:wrap;padding:1rem;background:#eef2f6;border-bottom:1px solid var(--line);position:sticky;top:72px;z-index:10}.sop-body{padding:1.2rem}.sop-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.panel{border:1px solid var(--line);border-radius:.6rem;padding:1rem;background:#fff}.panel h2,.panel h3{color:var(--navy);margin-top:0}.panel.danger{border-top:6px solid var(--danger)}.panel.orange{border-top:6px solid var(--orange)}.panel.ok{border-top:6px solid var(--ok)}ul.clean,ol.clean{padding-left:1.25rem;margin:.4rem 0}li{margin:.28rem 0}.steps{counter-reset:step;list-style:none;padding:0}.steps li{counter-increment:step;display:grid;grid-template-columns:2.2rem 1fr;gap:.6rem;margin:.55rem 0}.steps li:before{content:counter(step);background:var(--navy);color:#fff;width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800}.meta-table{width:100%;border-collapse:collapse}.meta-table td,.meta-table th{border:1px solid var(--line);padding:.5rem;vertical-align:top}.meta-table th{background:#eaf0f5;text-align:left;color:var(--navy)}.checklist{list-style:none;padding:0}.checklist li{display:grid;grid-template-columns:1.5rem 1fr;gap:.45rem;margin:.45rem 0}.checklist li:before{content:'☐';font-size:1.15rem}.plainbox{background:#eaf7ff;border-left:6px solid #1687b1;padding:1rem;margin:1rem 0;border-radius:.4rem}.hidden{display:none!important}.settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.settings-card{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:1rem}.tool-settings{max-height:520px;overflow:auto;border:1px solid var(--line);border-radius:.5rem}.tool-setting{display:grid;grid-template-columns:auto 1.3fr .7fr 1.5fr;gap:.5rem;align-items:center;padding:.6rem;border-bottom:1px solid var(--line)}.print-layout{display:grid;grid-template-columns:minmax(320px,.7fr) minmax(0,1.3fr);gap:1rem}.print-controls,.print-preview{background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:1rem}.tool-picker{max-height:360px;overflow:auto;border:1px solid var(--line);padding:.5rem}.tool-picker label{display:flex;gap:.5rem;padding:.35rem;border-bottom:1px solid #edf0f3}.option-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}.print-document{background:#fff;color:#000}.print-page{max-width:210mm;margin:0 auto;padding:12mm;background:#fff;min-height:277mm;position:relative;border-bottom:1px dashed #999}.print-page h1,.print-page h2,.print-page h3{color:#09233d}.print-page .print-image{height:62mm;max-width:100%;object-fit:contain;display:block;margin:auto}.print-page .notice{break-inside:avoid}.print-page .two-col{display:grid;grid-template-columns:1fr 1fr;gap:8mm}.print-footer{position:absolute;bottom:7mm;left:12mm;right:12mm;border-top:1px solid #aaa;padding-top:2mm;font-size:9pt;display:flex;justify-content:space-between}.sign-grid{display:grid;grid-template-columns:1fr 1fr;gap:8mm;margin-top:10mm}.line{border-bottom:1px solid #333;min-height:8mm}.knowledge{max-width:900px;margin:auto}.qcard{background:#fff;border:1px solid var(--line);padding:1rem;border-radius:.6rem;margin:.8rem 0}.qcard label{display:block;padding:.45rem;border-radius:.35rem}.qcard label:hover{background:#eef5fa}.result{padding:1rem;border-radius:.5rem;margin:1rem 0}.result.pass{background:#e6f7ed;border:1px solid #58a97c}.result.fail{background:#fff0f0;border:1px solid #d77878}.source-list{display:grid;gap:.7rem}.source-item{background:#fff;border:1px solid var(--line);border-radius:.6rem;padding:.8rem}.source-item a{color:#075b91;word-break:break-word}.help-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}.footer{padding:2rem 1rem;text-align:center;color:var(--muted)}.high-contrast{--paper:#000;--card:#000;--ink:#fff;--muted:#eee;--line:#fff;--navy:#000;--navy2:#222;--orange:#ffb000}.high-contrast .tool-card,.high-contrast .panel,.high-contrast .settings-card,.high-contrast .filters,.high-contrast .print-controls,.high-contrast .print-preview,.high-contrast .source-item,.high-contrast .qcard,.high-contrast .stat{background:#000;color:#fff;border-color:#fff}.high-contrast input,.high-contrast select,.high-contrast textarea{background:#000;color:#fff;border-color:#fff}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr;position:static}.sop-head{grid-template-columns:1fr}.sop-head img{height:210px}.sop-grid,.settings-grid,.print-layout{grid-template-columns:1fr}.sop-toolbar{position:static}.tool-setting{grid-template-columns:auto 1fr}.tool-setting select{grid-column:2}.nav{display:none;width:100%;order:3}.nav.open{display:grid;grid-template-columns:1fr 1fr}.mobile-toggle{display:block}.brandrow{flex-wrap:wrap}.utility{margin-left:auto}}
+@media(max-width:560px){.shell{padding:.65rem}.stats,.filters,.option-grid,.card-actions{grid-template-columns:1fr}.nav.open{grid-template-columns:1fr}.sop-head h1{font-size:1.7rem}.sop-grid{display:block}.panel{margin-bottom:.7rem}}
+
+/* Print optimisation v2.3 */
+.print-page{font-size:9.2pt;line-height:1.22;padding:10mm 11mm 15mm;min-height:297mm;box-sizing:border-box}
+.print-page h1{font-size:19pt;line-height:1.05;margin:1mm 0}
+.print-page h2{font-size:12pt;line-height:1.08;margin:2.4mm 0 1mm;padding-bottom:.6mm;border-bottom:1px solid #aeb8c2;break-after:avoid;page-break-after:avoid}
+.print-page h3{font-size:10.2pt;line-height:1.1;margin:1.8mm 0 .7mm;break-after:avoid;page-break-after:avoid}
+.print-page p{margin:1mm 0 1.7mm}
+.print-page ul,.print-page ol{margin:.8mm 0 1.8mm;padding-left:5mm}
+.print-page li{margin:0 0 .65mm;break-inside:avoid;page-break-inside:avoid}
+.print-page .print-image{height:48mm;margin:2mm auto 2.5mm}
+.print-page .two-col{gap:5mm;align-items:start}
+.print-page .notice{padding:2.2mm 3mm;margin:2mm 0;font-size:8.8pt}
+.print-block,.quick-section,.quick-top,.quick-signoff,.sign-grid{break-inside:avoid;page-break-inside:avoid}
+.print-footer{bottom:5mm;left:11mm;right:11mm;padding-top:1.2mm;font-size:7.7pt}
+.print-auth{max-width:62mm;text-align:right;font-size:8.5pt;line-height:1.18}
+
+.quick-page{height:297mm;min-height:297mm;max-height:297mm;overflow:hidden;padding:7mm 8mm 11mm;font-size:8.35pt;line-height:1.17}
+.quick-page h1{font-size:18pt;line-height:1.02;margin:.8mm 0 1mm}
+.quick-page h2{font-size:10.2pt;margin:0 0 1mm;padding:0 0 .6mm;border-bottom:1.5px solid #e66b19}
+.quick-page ul,.quick-page ol{margin:0;padding-left:4.5mm}
+.quick-page li{margin:0 0 .55mm}
+.quick-header{display:grid;grid-template-columns:minmax(0,1fr) 58mm;gap:5mm;align-items:start;border-bottom:2.5px solid #e66b19;padding-bottom:2mm;margin-bottom:2mm}
+.quick-school{font-size:8pt;font-weight:700}
+.quick-sub{font-size:7.4pt;color:#3d4b57}
+.quick-status{display:grid;gap:1.1mm;text-align:right;font-size:7.8pt;line-height:1.15}
+.quick-status span{display:block;border:1px solid #6d7780;border-radius:2mm;padding:1.1mm 1.6mm;font-weight:700}
+.quick-top{display:grid;grid-template-columns:45mm minmax(0,1fr);gap:4mm;align-items:center;margin-bottom:2.5mm}
+.quick-image{width:45mm;height:35mm;object-fit:contain;display:block;margin:auto}
+.quick-summary{display:grid;gap:1.5mm}
+.quick-alert{border-left:3px solid #a82b2b;background:#fff1f1;padding:1.8mm 2.2mm;font-weight:700}
+.quick-line{border:1px solid #bac4cd;border-radius:2mm;padding:1.6mm 2mm}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:3mm 4mm;align-items:start}
+.quick-section{border:1px solid #b9c3cc;border-radius:2.2mm;padding:2mm 2.3mm;background:#fff}
+.quick-section.danger{border-left:3px solid #a82b2b}
+.quick-section.stop{border-left:3px solid #e66b19;background:#fff8f2}
+.quick-signoff{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4mm;margin-top:2.4mm;font-size:7.8pt}
+.quick-signoff>div{border-top:1px solid #333;padding-top:1mm;min-height:7mm}
+.quick-page .print-footer{bottom:3.5mm;left:8mm;right:8mm;font-size:6.9pt}
+@media(max-width:700px){.sop-head,.quick-header,.quick-top,.quick-grid{grid-template-columns:1fr}.sop-media{grid-template-columns:1fr}.sop-ppe-side{order:2}.quick-top{grid-template-areas:'image' 'ppe' 'summary'}.quick-status{text-align:left}.quick-image{height:30mm}.quick-summary-lines{grid-template-columns:1fr}}
+@page{size:A4 portrait;margin:0}@media print{html,body{width:210mm;background:#fff!important}.topbar,.footer,.no-print{display:none!important}.shell{max-width:none!important;width:210mm!important;margin:0!important;padding:0!important}.print-layout,.print-preview,.print-document,#app{display:block!important;width:210mm!important;max-width:none!important}.print-preview{border:0!important;padding:0!important;margin:0!important;background:#fff!important}.print-document{display:block!important;margin:0!important;padding:0!important}.print-page{border:0!important;page-break-after:always;break-after:page;min-height:297mm;height:auto;padding:10mm 11mm 15mm;margin:0!important;overflow:visible}.print-page.quick-page{height:297mm!important;min-height:297mm!important;max-height:297mm!important;padding:7mm 8mm 11mm!important;overflow:hidden!important;page-break-inside:avoid;break-inside:avoid}.print-page:last-child{page-break-after:auto;break-after:auto}.print-footer:after{content:'Controlled copy'}.avoid-break,.print-block,.quick-section,.quick-top,.quick-signoff,.sign-grid{break-inside:avoid!important;page-break-inside:avoid!important}.print-page h1,.print-page h2,.print-page h3{break-after:avoid!important;page-break-after:avoid!important}.print-page li{break-inside:avoid!important;page-break-inside:avoid!important}.print-page table{break-inside:auto}.print-page tr{break-inside:avoid}.print-page thead{display:table-header-group}.high-contrast{--ink:#000}.print-page *{color:#000!important}.print-page,.print-page .quick-section,.print-page .quick-alert,.print-page .quick-line{background:#fff!important}.print-page .badge{border:1px solid #000}.print-page a{text-decoration:none;color:#000}}
+
+.ppe-signs{display:flex;flex-wrap:wrap;gap:.55rem;margin:.5rem 0 .75rem;align-items:flex-start}
+.ppe-sign{width:92px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:.25rem;font-size:.76rem;font-weight:800;color:var(--navy);line-height:1.15}
+.ppe-sign img{width:58px;height:58px;display:block;object-fit:contain}
+.ppe-sign.conditional{color:#7a4b00}
+.ppe-sign .condition{font-size:.66rem;font-weight:800;background:#fff1d8;color:#7a4b00;padding:.12rem .28rem;border-radius:999px}
+.ppe-visual-note{font-size:.8rem;color:var(--muted);margin:.1rem 0 .5rem}
+.ppe-no-gloves{font-size:.8rem;font-weight:800;color:#8d1f1f;background:#fff0f0;border-left:4px solid var(--danger);padding:.38rem .5rem;margin:.4rem 0}
+.print-ppe-signs{gap:2.2mm;margin:1.3mm 0 2mm}
+.print-ppe-signs .ppe-sign{width:22mm;font-size:6.6pt;gap:.7mm;line-height:1.05}
+.print-ppe-signs .ppe-sign img{width:12mm;height:12mm}
+.print-ppe-signs .condition{font-size:5.6pt;padding:.2mm .8mm}
+.quick-ppe-signs{gap:1.5mm;margin:0 0 1.3mm;align-items:center}
+.quick-ppe-signs .ppe-sign{width:17mm;font-size:5.7pt;gap:.3mm;line-height:1}
+.quick-ppe-signs .ppe-sign img{width:9.5mm;height:9.5mm}
+.quick-ppe-signs .condition{display:none}
+.quick-ppe-signs .ppe-sign-label{max-width:17mm}
+@media(max-width:700px){.ppe-sign{width:78px}.ppe-sign img{width:50px;height:50px}}
+@media print{
+  .ppe-signs{break-inside:avoid;page-break-inside:avoid}
+  .ppe-visual-note,.ppe-no-gloves{font-size:6.5pt}
+  .quick-ppe-signs{display:flex!important}
+}
+
+
+/* v2.8: automatic image standardisation and strict print frames */
+.tool-image{height:220px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fafafa}
+.tool-image img{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important}
+.sop-media{grid-template-columns:minmax(0,1fr) 132px;align-items:stretch}
+.sop-media>img{width:100%!important;height:230px!important;max-width:100%!important;object-fit:contain!important;object-position:center!important;overflow:hidden}
+.sop-ppe-side{height:230px;overflow:hidden;display:flex;flex-direction:column}
+.sop-ppe-side .ppe-signs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.25rem;align-content:start}
+.sop-ppe-side .ppe-sign{width:auto;min-width:0}
+
+.print-media-row{grid-template-columns:46mm minmax(0,1fr);min-height:34mm;max-height:34mm;overflow:hidden;align-items:stretch}
+.print-media-row.no-image{grid-template-columns:1fr}
+.print-media-image-wrap{width:46mm;height:34mm;min-width:46mm;min-height:34mm;max-width:46mm;max-height:34mm;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fafafa;border:1px solid #d2dae1;border-radius:2mm}
+.print-media-image{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;display:block!important;margin:0!important}
+.print-media-ppe{height:34mm;max-height:34mm;overflow:hidden;padding:1mm 1.4mm}
+.print-media-ppe h2{margin:0 0 .45mm;font-size:8.5pt}
+.print-media-ppe .print-ppe-signs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45mm .7mm;margin:0}
+.print-media-ppe .ppe-sign{width:auto;min-width:0;font-size:4.9pt;line-height:.92;gap:.15mm}
+.print-media-ppe .ppe-sign img{width:7.4mm;height:7.4mm}
+.print-media-ppe .condition{display:none}
+.print-media-ppe ul{margin:.35mm 0 0;padding-left:3.5mm;font-size:6.1pt;line-height:1.02;columns:2;column-gap:4mm}
+.print-media-ppe li{margin:0 0 .2mm;break-inside:avoid}
+.print-media-ppe .ppe-no-gloves{font-size:5.5pt;margin:.3mm 0 0;padding:.3mm .6mm}
+
+.quick-top{grid-template-columns:44mm minmax(0,1fr);gap:1.5mm 3mm;margin-bottom:1.8mm}
+.quick-image-wrap{grid-area:image;width:44mm;height:31mm;min-width:44mm;min-height:31mm;max-width:44mm;max-height:31mm;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fafafa;border:1px solid #d2dae1;border-radius:2mm}
+.quick-image{width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;display:block!important;margin:0!important}
+.quick-ppe-side{height:31mm;max-height:31mm;overflow:hidden;padding:.8mm 1.2mm;display:flex;flex-direction:column}
+.quick-ppe-side h2{font-size:8.4pt;margin:0 0 .35mm;padding:0 0 .35mm}
+.quick-ppe-side .quick-ppe-signs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.35mm .55mm;margin:0;align-content:start}
+.quick-ppe-side .ppe-sign{width:auto;min-width:0;font-size:4.5pt;line-height:.9;gap:.1mm}
+.quick-ppe-side .ppe-sign img{width:6.7mm;height:6.7mm}
+.quick-ppe-side .ppe-sign-label{max-width:none;white-space:normal}
+.quick-ppe-side .ppe-no-gloves{font-size:5.2pt;margin:.2mm 0 0;padding:.25mm .55mm}
+.quick-summary{gap:.75mm}
+.quick-summary-lines{gap:1.4mm}
+.quick-alert{padding:1.2mm 1.7mm}
+.quick-line{padding:1.1mm 1.5mm}
+.quick-grid{gap:2.4mm 3mm}
+.quick-section{padding:1.7mm 2mm}
+.quick-signoff{margin-top:1.8mm}
+@media(max-width:700px){.quick-image-wrap{width:100%;max-width:none}.quick-ppe-side{height:auto;max-height:none}.sop-ppe-side{height:auto}}
+
+
+/* v2.8 layout correction: explicit two-column grid areas */
+.quick-top{grid-template-areas:"image ppe" "summary summary"!important}
+.quick-image-wrap{grid-area:image!important}
+.quick-ppe-side{grid-area:ppe!important}
+.quick-summary{grid-area:summary!important}
+@media(max-width:700px){.quick-top{grid-template-areas:"image" "ppe" "summary"!important}}
+
+
+/* v2.9: PPE signs and written requirements are always visible on page 1. */
+.ppe-written{font-size:6.7pt;line-height:1.12;margin-top:.7mm;padding-top:.55mm;border-top:1px solid #aeb8c0;color:#111;overflow:visible}
+.print-media-row{display:grid!important;grid-template-columns:48mm minmax(0,1fr)!important;gap:3.2mm;align-items:stretch;margin:1mm 0 2mm;min-height:43mm!important;max-height:none!important;overflow:visible!important}
+.print-media-image-wrap{width:48mm;height:43mm;min-height:43mm;max-height:43mm}
+.print-media-image{width:100%!important;height:100%!important;object-fit:contain!important}
+.print-media-ppe{height:auto!important;min-height:43mm;max-height:none!important;overflow:visible!important;padding:1.2mm 1.7mm!important;display:block!important}
+.print-media-ppe h2{font-size:9pt!important;margin:0 0 .7mm!important}
+.print-media-ppe .print-ppe-signs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.65mm 1mm!important;margin:0!important}
+.print-media-ppe .ppe-sign{font-size:5.7pt!important;line-height:1!important;gap:.25mm!important}
+.print-media-ppe .ppe-sign img{width:9mm!important;height:9mm!important}
+.print-media-ppe .condition{display:none!important}
+.print-media-ppe .ppe-no-gloves{font-size:6.1pt!important;line-height:1.05;margin:.6mm 0 0!important;padding:.5mm .8mm!important}
+.full-sop-first{padding-top:8.5mm!important;padding-bottom:14mm!important;font-size:9.1pt;line-height:1.22}
+.full-sop-first .print-block{margin-bottom:2mm}
+.full-sop-first .print-block h2{margin-bottom:.8mm}
+.full-sop-first li{margin-bottom:.5mm}
+
+.quick-top{grid-template-columns:44mm minmax(0,1fr)!important;gap:1.8mm 3mm!important;margin-bottom:1.7mm!important}
+.quick-image-wrap{width:44mm!important;height:43mm!important;min-width:44mm!important;min-height:43mm!important;max-width:44mm!important;max-height:43mm!important}
+.quick-ppe-side{height:auto!important;min-height:43mm;max-height:none!important;overflow:visible!important;padding:1mm 1.4mm!important;display:block!important}
+.quick-ppe-side h2{font-size:8.8pt!important;margin:0 0 .55mm!important}
+.quick-ppe-side .quick-ppe-signs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.55mm .8mm!important;margin:0!important}
+.quick-ppe-side .ppe-sign{font-size:5.25pt!important;line-height:.98!important;gap:.2mm!important}
+.quick-ppe-side .ppe-sign img{width:8.3mm!important;height:8.3mm!important}
+.quick-ppe-side .ppe-sign-label{display:block!important;white-space:normal!important}
+.quick-ppe-side .ppe-no-gloves{font-size:5.7pt!important;line-height:1.02;margin:.45mm 0 0!important;padding:.4mm .7mm!important}
+.quick-ppe-side .ppe-written{font-size:5.9pt;line-height:1.08;margin-top:.55mm;padding-top:.45mm}
+.quick-summary{gap:.65mm!important}
+.quick-alert{padding:1.05mm 1.55mm!important}
+.quick-line{padding:1mm 1.35mm!important}
+.quick-grid{gap:2.1mm 2.7mm!important}
+.quick-section{padding:1.55mm 1.9mm!important}
+.quick-page li{margin-bottom:.42mm!important}
+.quick-signoff{margin-top:1.55mm!important}
+.quick-fit-1{font-size:8.05pt!important;line-height:1.13!important}
+.quick-fit-1 .quick-page h2{font-size:9.8pt!important}
+.quick-fit-1 .quick-section{padding:1.35mm 1.7mm!important}
+.quick-fit-2{font-size:7.72pt!important;line-height:1.09!important;padding-top:6.3mm!important;padding-bottom:10mm!important}
+.quick-fit-2 .quick-section{padding:1.15mm 1.55mm!important}
+.quick-fit-2 .quick-grid{gap:1.7mm 2.3mm!important}
+
+.competency-ppe{display:grid;grid-template-columns:34mm minmax(0,1fr);column-gap:2mm;align-items:start;border:1px solid #b8c2ca;border-radius:2mm;padding:1.2mm 1.7mm;margin:1.4mm 0 2mm;break-inside:avoid;page-break-inside:avoid}
+.competency-ppe h2{grid-column:1/-1;margin:0 0 .6mm;font-size:9pt}
+.competency-ppe .print-ppe-signs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45mm .7mm;margin:0}
+.competency-ppe .ppe-sign{font-size:4.9pt;line-height:.95;gap:.15mm}
+.competency-ppe .ppe-sign img{width:7mm;height:7mm}
+.competency-ppe .ppe-written{font-size:6.4pt;line-height:1.08;margin:0;padding:0;border:0}
+.competency-ppe .ppe-no-gloves{font-size:5.5pt;line-height:1;margin:.3mm 0 0;padding:.3mm .6mm}
+.competency-first{padding-top:8mm!important;padding-bottom:14mm!important}
+.competency-first .meta-table td,.competency-first .meta-table th{padding:1.2mm}
+.competency-questions{margin-top:1mm}
+.competency-questions li{margin-bottom:2.2mm!important}
+.competency-first .line{min-height:4.7mm}
+
+@media(max-width:700px){.quick-image-wrap{height:38mm!important;max-width:none!important;width:100%!important}.quick-ppe-side{min-height:0}.print-media-row,.competency-ppe{grid-template-columns:1fr}.print-media-image-wrap{margin:auto}.sop-ppe-side .ppe-written{color:#fff}}
+
+
+/* v2.9 competency PPE readability correction */
+.competency-ppe{display:block!important}
+.competency-ppe-body{display:grid;grid-template-columns:103mm minmax(0,1fr);gap:3mm;align-items:start}
+.competency-ppe-icons .print-ppe-signs{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7mm 1.1mm!important;margin:0!important}
+.competency-ppe-icons .ppe-sign{font-size:5.2pt!important;line-height:1!important;gap:.2mm!important}
+.competency-ppe-icons .ppe-sign img{width:8mm!important;height:8mm!important}
+.competency-ppe-icons .condition{display:none!important}
+.competency-ppe-icons .ppe-no-gloves{font-size:5.7pt!important;line-height:1.03;margin:.5mm 0 0!important;padding:.35mm .65mm!important}
+.competency-ppe-written{font-size:6.5pt;line-height:1.12;padding:.5mm 0;color:#111}
+@media(max-width:700px){.competency-ppe-body{grid-template-columns:1fr}}
+
+
+
+/* v3.0 adaptive print readability and page-fill optimisation */
+@media print{
+  .quick-page,.sop-print-page,.competency-print-page{height:297mm!important;min-height:297mm!important;max-height:297mm!important;overflow:hidden!important}
+}
+
+/* Clear, readable standard print sizing. Runtime fitting selects a larger or smaller variant per page. */
+.quick-page{font-size:9.15pt!important;line-height:1.22!important}
+.quick-page h1{font-size:19.5pt!important}
+.quick-page h2{font-size:10.8pt!important}
+.quick-top{grid-template-columns:47mm minmax(0,1fr)!important;gap:2.4mm 3.6mm!important;margin-bottom:2.4mm!important}
+.quick-image-wrap{width:47mm!important;height:47mm!important;min-width:47mm!important;min-height:47mm!important;max-width:47mm!important;max-height:47mm!important}
+.quick-ppe-side{min-height:47mm!important;padding:1.4mm 1.8mm!important}
+.quick-ppe-side h2{font-size:9.6pt!important;margin-bottom:.8mm!important}
+.quick-ppe-side .quick-ppe-signs{gap:.85mm 1.15mm!important}
+.quick-ppe-side .ppe-sign{font-size:5.9pt!important;line-height:1.04!important}
+.quick-ppe-side .ppe-sign img{width:10.4mm!important;height:10.4mm!important}
+.quick-ppe-side .ppe-written{font-size:6.65pt!important;line-height:1.13!important;margin-top:.75mm!important;padding-top:.65mm!important}
+.quick-ppe-side .ppe-no-gloves{font-size:6.25pt!important;line-height:1.08!important}
+.quick-summary{gap:1mm!important}
+.quick-alert{padding:1.4mm 1.9mm!important}
+.quick-line{padding:1.3mm 1.7mm!important}
+.quick-grid{gap:3mm 3.5mm!important}
+.quick-section{padding:2.1mm 2.35mm!important}
+.quick-page li{margin-bottom:.62mm!important}
+.quick-signoff{margin-top:2.2mm!important;font-size:8.2pt!important}
+
+/* Spacious variants for short SOPs. */
+.quick-grow-1{font-size:9.65pt!important;line-height:1.26!important}
+.quick-grow-1 h1{font-size:20.5pt!important}.quick-grow-1 h2{font-size:11.3pt!important}
+.quick-grow-1 .quick-top{grid-template-columns:49mm minmax(0,1fr)!important;margin-bottom:3mm!important}
+.quick-grow-1 .quick-image-wrap{width:49mm!important;height:50mm!important;min-width:49mm!important;min-height:50mm!important;max-width:49mm!important;max-height:50mm!important}
+.quick-grow-1 .quick-ppe-side{min-height:50mm!important}.quick-grow-1 .ppe-sign img{width:11mm!important;height:11mm!important}
+.quick-grow-1 .quick-section{padding:2.5mm 2.7mm!important;min-height:42mm}.quick-grow-1 .quick-grid{gap:3.5mm 4mm!important}
+.quick-grow-1 .quick-page li{margin-bottom:.8mm!important}.quick-grow-1 .quick-signoff{margin-top:3mm!important}
+
+.quick-grow-2{font-size:10.15pt!important;line-height:1.29!important}
+.quick-grow-2 h1{font-size:21.5pt!important}.quick-grow-2 h2{font-size:11.8pt!important}
+.quick-grow-2 .quick-top{grid-template-columns:51mm minmax(0,1fr)!important;margin-bottom:3.5mm!important}
+.quick-grow-2 .quick-image-wrap{width:51mm!important;height:53mm!important;min-width:51mm!important;min-height:53mm!important;max-width:51mm!important;max-height:53mm!important}
+.quick-grow-2 .quick-ppe-side{min-height:53mm!important;padding:1.8mm 2.1mm!important}.quick-grow-2 .ppe-sign img{width:11.8mm!important;height:11.8mm!important}.quick-grow-2 .ppe-sign{font-size:6.25pt!important}
+.quick-grow-2 .quick-section{padding:2.9mm 3mm!important;min-height:46mm}.quick-grow-2 .quick-grid{gap:4mm 4.5mm!important}
+.quick-grow-2 .quick-page li{margin-bottom:1mm!important}.quick-grow-2 .quick-signoff{margin-top:3.7mm!important;font-size:8.8pt!important}
+
+.quick-grow-3{font-size:10.65pt!important;line-height:1.32!important}
+.quick-grow-3 h1{font-size:22.5pt!important}.quick-grow-3 h2{font-size:12.3pt!important}
+.quick-grow-3 .quick-header{margin-bottom:3mm!important;padding-bottom:2.8mm!important}
+.quick-grow-3 .quick-top{grid-template-columns:54mm minmax(0,1fr)!important;margin-bottom:4mm!important;gap:3.2mm 4.5mm!important}
+.quick-grow-3 .quick-image-wrap{width:54mm!important;height:56mm!important;min-width:54mm!important;min-height:56mm!important;max-width:54mm!important;max-height:56mm!important}
+.quick-grow-3 .quick-ppe-side{min-height:56mm!important;padding:2mm 2.3mm!important}.quick-grow-3 .ppe-sign img{width:12.5mm!important;height:12.5mm!important}.quick-grow-3 .ppe-sign{font-size:6.55pt!important}.quick-grow-3 .quick-ppe-side .ppe-written{font-size:7.25pt!important}
+.quick-grow-3 .quick-section{padding:3.2mm 3.3mm!important;min-height:50mm}.quick-grow-3 .quick-grid{gap:4.5mm 5mm!important}
+.quick-grow-3 .quick-page li{margin-bottom:1.15mm!important}.quick-grow-3 .quick-signoff{margin-top:4.2mm!important;font-size:9.1pt!important}
+
+/* Dense-page fallbacks remain readable, rather than collapsing immediately to very small text. */
+.quick-fit-1{font-size:8.65pt!important;line-height:1.17!important}
+.quick-fit-1 h2{font-size:10.2pt!important}.quick-fit-1 .quick-section{padding:1.7mm 2mm!important}.quick-fit-1 .quick-grid{gap:2.4mm 3mm!important}
+.quick-fit-1 .ppe-sign img{width:9.4mm!important;height:9.4mm!important}.quick-fit-1 .quick-ppe-side .ppe-written{font-size:6.15pt!important}
+.quick-fit-2{font-size:8.15pt!important;line-height:1.12!important;padding-top:6.5mm!important;padding-bottom:10.5mm!important}
+.quick-fit-2 h2{font-size:9.7pt!important}.quick-fit-2 .quick-section{padding:1.35mm 1.7mm!important}.quick-fit-2 .quick-grid{gap:1.9mm 2.5mm!important}
+.quick-fit-2 .quick-top{grid-template-columns:43mm minmax(0,1fr)!important}.quick-fit-2 .quick-image-wrap{width:43mm!important;height:42mm!important;min-width:43mm!important;min-height:42mm!important;max-width:43mm!important;max-height:42mm!important}.quick-fit-2 .quick-ppe-side{min-height:42mm!important}.quick-fit-2 .ppe-sign img{width:8.5mm!important;height:8.5mm!important}
+
+/* Full SOP pages: bigger PPE signs and adaptive type scaling. */
+.sop-print-page{font-size:9.75pt!important;line-height:1.26!important;padding-top:9mm!important;padding-bottom:14mm!important}
+.sop-print-page h1{font-size:20.5pt!important}.sop-print-page h2{font-size:12.7pt!important;margin-top:2.8mm!important}.sop-print-page h3{font-size:10.8pt!important}
+.sop-print-page li{margin-bottom:.75mm!important}.sop-print-page .print-block{margin-bottom:2.7mm!important}.sop-print-page .two-col{gap:6mm!important}
+.print-media-row{grid-template-columns:52mm minmax(0,1fr)!important;min-height:49mm!important;margin:1.5mm 0 3mm!important}
+.print-media-image-wrap{width:52mm!important;height:49mm!important;min-height:49mm!important;max-height:49mm!important}
+.print-media-ppe{min-height:49mm!important;padding:1.6mm 2mm!important}
+.print-media-ppe h2{font-size:10pt!important}.print-media-ppe .ppe-sign img{width:11mm!important;height:11mm!important}.print-media-ppe .ppe-sign{font-size:6.25pt!important}.print-media-ppe .ppe-written{font-size:7.1pt!important;line-height:1.15!important}
+
+.full-grow-1{font-size:10.25pt!important;line-height:1.29!important}.full-grow-1 h1{font-size:21.5pt!important}.full-grow-1 h2{font-size:13.2pt!important}.full-grow-1 li{margin-bottom:.95mm!important}.full-grow-1 .print-block{margin-bottom:3.3mm!important}
+.full-grow-1 .print-media-row{grid-template-columns:54mm minmax(0,1fr)!important;min-height:52mm!important}.full-grow-1 .print-media-image-wrap{width:54mm!important;height:52mm!important;min-height:52mm!important;max-height:52mm!important}.full-grow-1 .print-media-ppe{min-height:52mm!important}.full-grow-1 .ppe-sign img{width:11.8mm!important;height:11.8mm!important}
+.full-grow-2{font-size:10.7pt!important;line-height:1.32!important}.full-grow-2 h1{font-size:22.5pt!important}.full-grow-2 h2{font-size:13.8pt!important}.full-grow-2 li{margin-bottom:1.15mm!important}.full-grow-2 .print-block{margin-bottom:4mm!important}.full-grow-2 .two-col{gap:7mm!important}
+.full-grow-2 .print-media-row{grid-template-columns:56mm minmax(0,1fr)!important;min-height:55mm!important}.full-grow-2 .print-media-image-wrap{width:56mm!important;height:55mm!important;min-height:55mm!important;max-height:55mm!important}.full-grow-2 .print-media-ppe{min-height:55mm!important;padding:2mm 2.3mm!important}.full-grow-2 .ppe-sign img{width:12.5mm!important;height:12.5mm!important}.full-grow-2 .print-media-ppe .ppe-written{font-size:7.5pt!important}
+.full-grow-3{font-size:11.15pt!important;line-height:1.35!important}.full-grow-3 h1{font-size:23.5pt!important}.full-grow-3 h2{font-size:14.3pt!important}.full-grow-3 li{margin-bottom:1.35mm!important}.full-grow-3 .print-block{margin-bottom:4.7mm!important}.full-grow-3 .two-col{gap:8mm!important}
+.full-grow-3 .print-media-row{grid-template-columns:58mm minmax(0,1fr)!important;min-height:58mm!important}.full-grow-3 .print-media-image-wrap{width:58mm!important;height:58mm!important;min-height:58mm!important;max-height:58mm!important}.full-grow-3 .print-media-ppe{min-height:58mm!important;padding:2.2mm 2.5mm!important}.full-grow-3 .ppe-sign img{width:13.2mm!important;height:13.2mm!important}.full-grow-3 .print-media-ppe .ppe-sign{font-size:6.8pt!important}.full-grow-3 .print-media-ppe .ppe-written{font-size:7.8pt!important}
+.full-fit-1{font-size:9.1pt!important;line-height:1.2!important}.full-fit-1 h2{font-size:12pt!important}.full-fit-1 li{margin-bottom:.5mm!important}.full-fit-1 .print-block{margin-bottom:2mm!important}.full-fit-1 .ppe-sign img{width:10mm!important;height:10mm!important}
+.full-fit-2{font-size:8.55pt!important;line-height:1.15!important;padding-top:7.5mm!important;padding-bottom:12.5mm!important}.full-fit-2 h1{font-size:18.5pt!important}.full-fit-2 h2{font-size:11.3pt!important}.full-fit-2 li{margin-bottom:.35mm!important}.full-fit-2 .print-block{margin-bottom:1.5mm!important}.full-fit-2 .print-media-row{grid-template-columns:46mm minmax(0,1fr)!important;min-height:43mm!important}.full-fit-2 .print-media-image-wrap{width:46mm!important;height:43mm!important;min-height:43mm!important;max-height:43mm!important}.full-fit-2 .print-media-ppe{min-height:43mm!important}.full-fit-2 .ppe-sign img{width:9mm!important;height:9mm!important}
+
+/* Competency pages retain writing room while using available space more effectively. */
+.competency-print-page{font-size:9.7pt!important;line-height:1.24!important}
+.competency-ppe-icons .ppe-sign img{width:9.5mm!important;height:9.5mm!important}.competency-ppe-icons .ppe-sign{font-size:5.8pt!important}.competency-ppe-written{font-size:7.1pt!important;line-height:1.16!important}
+.competency-grow-1{font-size:10.15pt!important;line-height:1.27!important}.competency-grow-1 h2{font-size:13pt!important}.competency-grow-1 .competency-questions li{margin-bottom:2.8mm!important}.competency-grow-1 .line{min-height:5.5mm!important}
+.competency-grow-2{font-size:10.55pt!important;line-height:1.3!important}.competency-grow-2 h1{font-size:22pt!important}.competency-grow-2 h2{font-size:13.5pt!important}.competency-grow-2 .competency-questions li{margin-bottom:3.3mm!important}.competency-grow-2 .line{min-height:6.2mm!important}.competency-grow-2 .ppe-sign img{width:10.5mm!important;height:10.5mm!important}
+.competency-fit-1{font-size:9.05pt!important;line-height:1.18!important}.competency-fit-1 .competency-questions li{margin-bottom:1.8mm!important}.competency-fit-1 .line{min-height:4.2mm!important}
+.competency-fit-2{font-size:8.45pt!important;line-height:1.13!important;padding-top:7mm!important;padding-bottom:12mm!important}.competency-fit-2 .competency-questions li{margin-bottom:1.25mm!important}.competency-fit-2 .line{min-height:3.5mm!important}.competency-fit-2 .ppe-sign img{width:8.3mm!important;height:8.3mm!important}
+
+#app:empty::before{content:'Loading SOP library...';display:block;background:#fff;border:1px solid var(--line);border-radius:.7rem;padding:1.25rem;font-weight:700;color:var(--navy)}

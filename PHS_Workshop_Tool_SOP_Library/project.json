@@ -1,0 +1,11 @@
+{
+  "name": "PHS Workshop Tool SOP Library",
+  "version": "3.2",
+  "generated": "2026-08-06",
+  "entry": "index.html",
+  "data": "data.json",
+  "toolCount": 53,
+  "imageCount": 53,
+  "ppeSignCount": 11,
+  "addedTool": "Soldering iron / soft soldering"
+}
